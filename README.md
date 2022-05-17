@@ -27,6 +27,7 @@ This repository consists of some .py files I wrote to test out some modules of t
     - Shows result sets of running each SQL query, such as CREATE TABLE, SELECT, and INNER JOIN 
 
 ## Further Reading 
-- https://www.analyticsvidhya.com/blog/2021/08/python-tutorial-working-with-csv-file-for-data-science/
-- https://sites.pitt.edu/~naraehan/python3/mbb12.html
+- [python-tutorial-working-with-csv-file-for-data-science](https://www.analyticsvidhya.com/blog/2021/08/python-tutorial-working-with-csv-file-for-data-science/)
+- [Getting a Traceback error when opening a file in python](https://sites.pitt.edu/~naraehan/python3/mbb12.html)
+- [how-to-iterate-over-files-in-directory-using-python](https://www.geeksforgeeks.org/how-to-iterate-over-files-in-directory-using-python/)
 
