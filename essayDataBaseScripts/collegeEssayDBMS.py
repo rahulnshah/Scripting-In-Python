@@ -196,6 +196,7 @@ if __name__ == '__main__':
         for rec in cursor.fetchall():
             print(rec)
         print()
+        # one more comment 
         cursor.execute("""SELECT title FROM essays WHERE title LIKE '%the%' OR title LIKE '% lab % ';""")
         column_names = [description[0] for description in cursor.description]
         print(column_names)
