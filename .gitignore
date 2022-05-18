@@ -1,1 +1,4 @@
 essayDataBaseScripts/myCollegeEssays
+# used for testing how csv file formats a string that has a comma inside it 
+essayDataBaseScripts/content.csv
+essayDataBaseScripts/ran.py

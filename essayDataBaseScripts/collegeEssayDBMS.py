@@ -13,6 +13,7 @@ if __name__ == '__main__':
         
         cursor.execute("""CREATE TABLE IF NOT EXISTS essays (
                           title TEXT PRIMARY KEY,
+                          content TEXT,
                           essay_url TEXT,
                           words INTEGER,
                           course_id INTEGER NOT NULL,
@@ -89,7 +90,7 @@ if __name__ == '__main__':
         # get all data that is needed for the essays table in the data.csv file - loop each file in the myCollegeEssays directory 
         directory = 'myCollegeEssays'
         # overwrtie the csv file
-        header = ["Title","Words","courseId"]
+        header = ["Title","Words","CourseId", "Content"]
         csvFile =  open('data.csv', mode='w',newline='')
         # create csv writer
         writer = csv.writer(csvFile)
@@ -105,6 +106,7 @@ if __name__ == '__main__':
                 total_words = 0
                 file = open(filename.path, 'r', encoding="utf-8")
                 read_data = file.read()
+                read_data = read_data.replace("\n", " ")
                 total_words = len(read_data.split())
                 # print('Total Words:', total_words)
                 file.close()
@@ -127,24 +129,25 @@ if __name__ == '__main__':
                     aRow.append(6)
                 else: # is350
                     aRow.append(8)
+                aRow.append(read_data)
                 # write to the csv file 
-                csvFile =  open('data.csv', mode='a', newline='')
+                csvFile =  open('data.csv', mode='a', newline='', encoding="utf-8")
                 # create csv writer
                 writer = csv.writer(csvFile)
                 writer.writerow(aRow)
                 # close the file
                 csvFile.close()
         # read data.csv and insert into the essays table 
-        aCsvFile = open('data.csv', mode='r')
+        aCsvFile = open('data.csv', mode='r', encoding="utf-8")
         
         csvreader = csv.reader(aCsvFile)
         # skip the header 
         header = next(csvreader)
         for row in csvreader:
-            #insert contents of each row in to the essays table
-            cursor.execute("INSERT INTO essays VALUES (:title, :words, :course_id)", {"title" : row[0], "words" : int(row[1]), "course_id" : int(row[2])})
+            #insert contents of each row in to the essays table in the order that data is declared in the CREATE TABLE query for essays table
+            cursor.execute("INSERT INTO essays VALUES (:title, :content, :words, :course_id)", {"title" : row[0], "words" : int(row[1]), "course_id" : int(row[2]), "content" : row[3]})
         print("essays:")
-        cursor.execute("""SELECT * FROM essays""")
+        cursor.execute("""SELECT words FROM essays""")
         for rec in cursor.fetchall():
             print(rec)
         print()
@@ -199,13 +202,58 @@ if __name__ == '__main__':
         for rec in cursor.fetchall():
             print(rec)
         print()
-        cursor.execute("""SELECT title FROM essays WHERE title LIKE '%personAL%' AND title LIKE '%narrative%' ;""")
+        cursor.execute("""SELECT title FROM essays WHERE title LIKE '%the%' OR title LIKE '%lab% ';""")
         column_names = [description[0] for description in cursor.description]
         print(column_names)
         for rec in cursor.fetchall():
             print(rec)
         print()
-        
+        cursor.execute("""SELECT title FROM essays WHERE title LIKE '%personAL%' AND title LIKE '%narrative%';""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        for rec in cursor.fetchall():
+            print(rec)
+        print()
+        print("Writings in which I used the word \"the\":")
+        # I know for sure that the word the had a space before and after it in any one of my writing if it is present in one
+        cursor.execute("""SELECT title FROM essays WHERE content LIKE '% the %';""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        res_set = cursor.fetchall()
+        print("length of result set: " + str(len(res_set)))
+        for rec in res_set:
+            print(rec)
+        print()
+        print("Writings in which I used the word \"and\":")
+        # I know for sure that the word the had a space before and after it in any one of my writing if it is present in one
+        cursor.execute("""SELECT title FROM essays WHERE content LIKE '% and %';""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        res_set = cursor.fetchall()
+        print("length of result set: " + str(len(res_set)))
+        for rec in res_set:
+            print(rec)
+        print()
+        print("Writings in which I used a \",\":")
+        cursor.execute("""SELECT title FROM essays WHERE content LIKE '%,%';""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        res_set = cursor.fetchall()
+        print("length of result set: " + str(len(res_set)))
+        for rec in res_set:
+            print(rec)
+        print()
+        print("Writings in which I never used the word \"the\" or \"and\":")
+        cursor.execute("""SELECT title FROM essays WHERE content NOT LIKE '% the %' OR content NOT LIKE '% and %';""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        res_set = cursor.fetchall()
+        print("length of result set: " + str(len(res_set)))
+        for rec in res_set:
+            print(rec)
+        print()
+        cursor.execute("""SELECT COUNT(*) FROM essays;""")
+        print("total records in essays table: " + str(cursor.fetchone()[0]))
         
         
 
