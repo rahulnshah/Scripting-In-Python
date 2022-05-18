@@ -16,11 +16,12 @@ This repository consists of some .py files I wrote to test out some modules of t
             - Next, I gathered all of my college essays into one folder in google drive and downloaded them one by one in O(n) (linear time) into ```myCollegeEssays```.  I changed every file's extension to .txt.  
             - Finally I looped every file in ```myCollegeEssays``` folder and for each file, I created a list named ```aRow```, to which I appended the file's title and total words in a text file per iteration.  At the end of an iteration, I opened ```data.csv``` in append mode and appended ```aRow``` to the file's ```writer``` object.  After filling up ```data.csv```, I reopened it and looped over its set of non-headers and inserted values in each row into the ```essays``` table. 
         - What is ```:memory:```?
+            - The is a special path name can be provided to create a temporary database in RAM. If you do plan to use an actual path to a database file like a .db or .sqlite file, then substitiute ```\``` with ```\\``` in your path on your Windows script.  That is just how Python interprets a ```\```. 
         - What is ```import sqlite3```?
             - 1) Used to to connect to an SQLite database in Python
             - 2) To execute queries, you use the cursor object, which is obtained from the connection 
         - What is ```import os``` and ```os.scandir(directory)```?
-            - 1) 
+            -  It returns iterator of ```os.DirEntry``` objects corresponding to the entries (files or folders) in the directory given by specified path.
         - What is ```import csv```?
             - 1) CSV stands for “Comma Separated Values.” First line of it is a header defining columns of the file and the rest are record of the file.  One can say # of records present in a csv file are always N + 1, where N is # of non-headers in a csv file. 
             - 2) csv modules's reader method is as the name suggests used to read an opened csv file. 
