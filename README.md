@@ -34,6 +34,8 @@ This repository consists of some .py files I wrote to test out some modules of t
     - [output.txt](essayDataBaseScripts/output.txt)
         - Shows result sets of running each SQL query, such as CREATE TABLE, SELECT, and INNER JOIN 
 
+##### I have not included data.csv to avert any attempts at copying my work
+
 ## Further Reading 
 - [python-tutorial-working-with-csv-file-for-data-science](https://www.analyticsvidhya.com/blog/2021/08/python-tutorial-working-with-csv-file-for-data-science/)
 - [Getting a Traceback error when opening a file in python](https://sites.pitt.edu/~naraehan/python3/mbb12.html)
