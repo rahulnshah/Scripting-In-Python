@@ -179,6 +179,33 @@ if __name__ == '__main__':
         for rec in cursor.fetchall():
             print(rec)
         print()
+        print("How many total word have I written? Enough to publish a book?")
+        cursor.execute("""SELECT SUM(words) AS TotalWords FROM essays;""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        for rec in cursor.fetchall():
+            print(rec)
+        print()
+        print("Writings which are less than 1000 words long:")
+        cursor.execute("""SELECT title, words, course_id FROM essays WHERE words < 1000;""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        for rec in cursor.fetchall():
+            print(rec)
+        print()
+        cursor.execute("""SELECT title FROM essays WHERE title LIKE '%the%' OR title LIKE '% lab % ';""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        for rec in cursor.fetchall():
+            print(rec)
+        print()
+        cursor.execute("""SELECT title FROM essays WHERE title LIKE '%personAL%' AND title LIKE '%narrative%' ;""")
+        column_names = [description[0] for description in cursor.description]
+        print(column_names)
+        for rec in cursor.fetchall():
+            print(rec)
+        print()
+        
         
         
 
