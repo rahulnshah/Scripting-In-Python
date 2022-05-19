@@ -255,7 +255,7 @@ if __name__ == '__main__':
         print()
         cursor.execute("""SELECT COUNT(*) FROM essays;""")
         print("total records in essays table: " + str(cursor.fetchone()[0]))
-# connection is closed - loop through the files again and rewrite data.csv; context mangers DO NOT have scope of their own in Python
+# connection is closed - loop through the files again and rewrite data.csv; context managers DO NOT have scope of their own in Python
 csvFile =  open('data.csv', mode='w',newline='')
 # create csv writer
 writer = csv.writer(csvFile)
