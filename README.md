@@ -32,9 +32,7 @@ This repository consists of some .py files I wrote to test out some modules of t
             UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 36593: character 
             maps to <undefined> ```, which occurs in Windows upon opening a text file whose path is passed into the open function as its first argument.  
     - [output.txt](essayDataBaseScripts/output.txt)
-        - Shows result sets of running each SQL query, such as CREATE TABLE, SELECT, and INNER JOIN 
-
-##### I have not included data.csv to avert any attempts at copying my work
+        - Shows result sets of running each SQL query, such as CREATE TABLE, SELECT, LIKE, and INNER JOIN 
 
 ## Further Reading 
 - [python-tutorial-working-with-csv-file-for-data-science](https://www.analyticsvidhya.com/blog/2021/08/python-tutorial-working-with-csv-file-for-data-science/)
