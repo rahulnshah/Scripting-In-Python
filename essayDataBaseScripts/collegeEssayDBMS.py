@@ -255,6 +255,53 @@ if __name__ == '__main__':
         print()
         cursor.execute("""SELECT COUNT(*) FROM essays;""")
         print("total records in essays table: " + str(cursor.fetchone()[0]))
+# connection is closed - loop through the files again and rewrite data.csv; context mangers DO NOT have scope of their own in Python
+csvFile =  open('data.csv', mode='w',newline='')
+# create csv writer
+writer = csv.writer(csvFile)
+writer.writerow(header)
+# close the file
+csvFile.close()
+
+for filename in os.scandir(directory):
+    if filename.is_file():
+        aRow = list()
+        aFileName = filename.path[filename.path.index("\\") + 1:filename.path.index(".txt")]
+        # print(type(filename.path) , filename.path)
+        total_words = 0
+        file = open(filename.path, 'r', encoding="utf-8")
+        read_data = file.read()
+        read_data = read_data.replace("\n", " ")
+        total_words = len(read_data.split())
+        # print('Total Words:', total_words)
+        file.close()
+        aRow.append(aFileName)
+        aRow.append(total_words)
+        # append the courseid to aRow
+        if read_data.lower().find("hum101") >= 0:
+            aRow.append(1)
+        elif read_data.lower().find("hum102") >= 0:
+            aRow.append(3)
+        elif read_data.lower().find("hist213") >= 0:
+            aRow.append(5)
+        elif read_data.lower().find("hist363") >= 0:
+            aRow.append(7)
+        elif read_data.lower().find("phys111") >= 0:
+            aRow.append(2)
+        elif read_data.lower().find("phys121") >= 0:
+            aRow.append(4)
+        elif read_data.lower().find("econ265") >= 0:
+            aRow.append(6)
+        else: # is350
+            aRow.append(8)
+        aRow.append("content erased!!!!!!!!!!!!!")
+        # write to the csv file 
+        csvFile =  open('data.csv', mode='a', newline='', encoding="utf-8")
+        # create csv writer
+        writer = csv.writer(csvFile)
+        writer.writerow(aRow)
+        # close the file
+        csvFile.close()
         
         
 
