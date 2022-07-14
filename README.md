@@ -4,9 +4,9 @@
 This repository consists of some .py files I wrote to test out some modules of the [Python Standard Library](https://docs.python.org/3/library/).
  
 ## Files
-- [recursionEx.py](recursionEx.py)
+- [recursionEx.py](recursion_in_python/recursionEx.py)
     - It is a python script that imports the turtle module of python to recursively print the word "recursion" in middle of the viewer's window with a Turtle object.
-- [tellTime.py](tellTime.py)
+- [tellTime.py](using_time_module/tellTime.py)
     - It is a python script that imports the turtle, time, and datetime module of python and calculates amount of hours and minutes left until the day ends.
 - [collegeEssayDBMS.py](essayDataBaseScripts/collegeEssayDBMS.py)
    -  I organized my college essays into an sqlite database. 
